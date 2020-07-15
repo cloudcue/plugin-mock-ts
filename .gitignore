@@ -1,0 +1,5 @@
+# standard 
+node_modules
+
+# project specific
+dist

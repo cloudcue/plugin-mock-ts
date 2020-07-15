@@ -1,0 +1,24 @@
+{
+  "name": "@cloudcue/plugin-mock-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "build:watch": "rm -rf dist && tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudcue/plugin-mock-ts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cloudcue/plugin-mock-ts/issues"
+  },
+  "homepage": "https://github.com/cloudcue/plugin-mock-ts#readme",
+  "devDependencies": {
+    "typescript": "^3.9.6"
+  }
+}

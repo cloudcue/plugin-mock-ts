@@ -1,0 +1,28 @@
+{
+  "include": ["src/**/**.ts", "test/**/**.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+
+    "outDir": "./lib",
+    "allowJs": true,
+    "checkJs": true,
+    "sourceMap": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "suppressImplicitAnyIndexErrors": true,
+
+    "baseUrl": "./",
+    "paths": {},
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
+}
