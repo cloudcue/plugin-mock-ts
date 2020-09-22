@@ -1,3 +1,4 @@
+import { Info, Plugin, PluginType } from '@cloudcue/contracts';
 import { MockProcessorUUID, MockProcessor } from './processor';
 
 interface MockPluginConfiguration {
@@ -5,7 +6,17 @@ interface MockPluginConfiguration {
 }
 
 export const MockPluginUUID = 'f240f15b-708a-41ba-a1ba-0979c67a62f1';
-export class MockPlugin {
+export class MockPlugin implements Plugin {
+  async start(): Promise<void> {
+    // throw new Error('Method not implemented.');
+  }
+  async stop(): Promise<void> {
+    // throw new Error('Method not implemented.');
+  }
+  async systemReady(): Promise<void> {
+    // throw new Error('Method not implemented.');
+  }
+  type = PluginType.GeneralPlugin;
   uuid = MockPluginUUID;
   id = 'EXAMPLE-MOCK-TS';
   label = 'Example Mock Plugin (TS)';
@@ -23,6 +34,14 @@ export class MockPlugin {
 
   get configuration(): MockPluginConfiguration {
     return this.context.configuration.data as MockPluginConfiguration;
+  }
+
+  createObjectInfo(uuid: string): Info<string> | undefined {
+    switch (uuid) {
+      case MockProcessorUUID:
+        return new MockProcessor();
+    }
+    return undefined;
   }
 
   createObject(uuid: string): unknown {
