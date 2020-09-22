@@ -1,4 +1,4 @@
-import { Info, Plugin, PluginType } from '@cloudcue/contracts';
+import { Info, Plugin, PluginInfo, PluginType } from '@cloudcue/contracts';
 import { MockProcessorUUID, MockProcessor } from './processor';
 
 interface MockPluginConfiguration {
@@ -6,7 +6,7 @@ interface MockPluginConfiguration {
 }
 
 export const MockPluginUUID = 'f240f15b-708a-41ba-a1ba-0979c67a62f1';
-export class MockPlugin implements Plugin {
+export class MockPlugin implements PluginInfo, Plugin {
   async start(): Promise<void> {
     // throw new Error('Method not implemented.');
   }
@@ -19,9 +19,11 @@ export class MockPlugin implements Plugin {
   type = PluginType.GeneralPlugin;
   uuid = MockPluginUUID;
   id = 'EXAMPLE-MOCK-TS';
+  icon = '';
   label = 'Example Mock Plugin (TS)';
   description = '';
-  initialConfiguration = { data: { myNumber: 99 }, version: '1' };
+  configurationInfo = { default: { data: { myNumber: 1 } } };
+  uxInfo = {};
 
   private _context?: any;
   get context(): any {
