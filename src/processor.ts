@@ -1,4 +1,4 @@
-import { Processor, ProcessorState, ProcessorContext, ProcessorType } from '@cloudcue/contracts';
+import { Processor, ProcessorState, ProcessorContext, ProcessorType, ProcessorInfo } from '@cloudcue/contracts';
 import { setInterval } from 'timers';
 
 interface MockProcessorConfiguration {
@@ -6,16 +6,17 @@ interface MockProcessorConfiguration {
 }
 
 export const MockProcessorUUID = 'd9d52b10-0098-4d52-aa46-cdd572805c39';
-export class MockProcessor implements Processor {
+export class MockProcessor implements ProcessorInfo, Processor {
   type = ProcessorType.GeneralProcessor;
   uuid = MockProcessorUUID;
   id = 'EXAMPLE-MOCK-TS';
+  icon = '';
   label = 'Example Mock Processor (TS)';
   description = '';
   state = ProcessorState.stopped;
   initialState = ProcessorState.stopped;
-  initialConfiguration = { data: undefined, version: '' };
-  profiles = [];
+  configurationInfo = { default: { data: undefined, version: '' } };
+  uxInfo = {};
 
   private _context?: ProcessorContext;
   get context(): ProcessorContext {
