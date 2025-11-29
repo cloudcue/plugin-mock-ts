@@ -1,0 +1,38 @@
+name: Build and Deploy Project [ DEV ]
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: ['dev']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Authenticate with private NPM package
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+        env:
+          NODE_ENV: production
+
+      # Uncomment when deploy script is ready
+      # - name: Deploy
+      #   env:
+      #     CLOUDCUE_DEPLOY_ENV: dev
+      #   run: pnpm run deploy

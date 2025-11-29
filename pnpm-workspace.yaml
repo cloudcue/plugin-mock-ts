@@ -1,0 +1,7 @@
+packages:
+  - .
+  - ux
+
+overrides:
+  '@cloudcue/sdk': link:../../cloudcue-client/packages/sdk
+  '@cloudcue/vite-config': link:../../cloudcue-client/packages/vite-config

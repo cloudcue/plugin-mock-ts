@@ -1,4 +1,4 @@
-import { Processor, ProcessorState, ProcessorContext, ProcessorType, ProcessorInfo } from '@cloudcue/contracts';
+import { Processor, ProcessorState, ProcessorContext, ProcessorType, ProcessorInfo } from '@cloudcue/sdk/contracts';
 import { setInterval } from 'timers';
 
 interface MockProcessorConfiguration {

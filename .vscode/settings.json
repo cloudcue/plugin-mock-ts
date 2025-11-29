@@ -1,0 +1,21 @@
+{
+  "git.autofetch": false,
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/lib/**": true
+  },
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/lib": false,
+    "**/dist": false
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "tsconfig.json": "tsconfig.*.json, env.d.ts",
+    "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig"
+  },
+  "vitest.configSearchPatternInclude": "**/{vitest,vite}.config.{ts,js,mjs,cjs,cts,mts}",
+  "vitest.configSearchPatternExclude": "{**/node_modules/**,**/.*/**,*.d.ts,**/*.base.ts}"
+}

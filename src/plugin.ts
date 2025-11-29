@@ -1,4 +1,4 @@
-import { Info, Plugin, PluginInfo, PluginType } from '@cloudcue/contracts';
+import { Info, Plugin, PluginInfo, PluginType } from '@cloudcue/sdk/contracts';
 import { MockProcessorUUID, MockProcessor } from './processor';
 
 interface MockPluginConfiguration {

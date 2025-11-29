@@ -1,5 +1,5 @@
 import { MockPlugin } from './plugin';
-import * as c1 from '@cloudcue/contracts';
+import * as c1 from '@cloudcue/sdk/contracts';
 
 export const info: c1.PluginInfo = new MockPlugin();
 
