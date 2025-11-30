@@ -4,9 +4,7 @@
   "description": "TypeScript mock plugin for CloudCue testing",
   "author": "Nick <nlaurie@metafig.com>",
   "license": "ISC",
-  "cloudcue": {
-    "id": "com.cloudcue.mock-ts"
-  },
+  "cloudcue": {},
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
