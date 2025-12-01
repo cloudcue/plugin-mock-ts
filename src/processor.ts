@@ -1,4 +1,12 @@
-import { Processor, ProcessorState, ProcessorContext, ProcessorType, ProcessorInfo } from '@cloudcue/sdk/contracts';
+import {
+  Processor,
+  ServiceState,
+  ServiceInitialState,
+  ServiceInitialStateInfo,
+  ProcessorContext,
+  ProcessorType,
+  ProcessorInfo,
+} from '@cloudcue/sdk/contracts';
 import { setInterval } from 'timers';
 
 interface MockProcessorConfiguration {
@@ -13,10 +21,17 @@ export class MockProcessor implements ProcessorInfo, Processor {
   icon = '';
   label = 'Example Mock Processor (TS)';
   description = '';
-  state = ProcessorState.stopped;
-  initialState = ProcessorState.stopped;
   configurationInfo = { default: { data: undefined, version: '' } };
   uxInfo = {};
+
+  // ServiceInfo
+  initialState: ServiceInitialStateInfo = { default: ServiceInitialState.Default };
+
+  // Service
+  private _state = ServiceState.Stopped;
+  get state(): ServiceState {
+    return this._state;
+  }
 
   private _context?: ProcessorContext;
   get context(): ProcessorContext {
@@ -28,26 +43,30 @@ export class MockProcessor implements ProcessorInfo, Processor {
   }
 
   get configuration(): MockProcessorConfiguration {
-    return this.context.configuration.data as MockProcessorConfiguration;
+    return this.context.myConfiguration.data as MockProcessorConfiguration;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   init(context: ProcessorContext): void {
     this._context = context;
   }
-  async start(): Promise<void> {
+
+  async start(): Promise<ServiceState> {
     this.context.log.info(`\n${this.id} - start\n`);
-    // throw new Error('Method not implemented.');
     setInterval(() => {
       this.context.log.info(`Timer From - ${this.id}`);
     }, 5000);
+    this._state = ServiceState.Started;
+    return this._state;
   }
-  async stop(): Promise<void> {
+
+  async stop(): Promise<ServiceState> {
     this.context.log.info(`\n${this.id} - stop\n`);
-    // throw new Error('Method not implemented.');
+    this._state = ServiceState.Stopped;
+    return this._state;
   }
+
   async systemReady(): Promise<void> {
     this.context.log.info(`\n${this.id} - ready\n`);
-    // throw new Error('Method not implemented.');
   }
 }
