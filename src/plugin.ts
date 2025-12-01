@@ -6,7 +6,19 @@ interface MockPluginConfiguration {
 }
 
 export const MockPluginUUID = 'f240f15b-708a-41ba-a1ba-0979c67a62f1';
-export class MockPlugin implements PluginInfo, Plugin {
+
+export const MockPluginInfo: PluginInfo<MockPluginConfiguration> = {
+  type: PluginType.CorePlugin,
+  uuid: MockPluginUUID,
+  id: 'EXAMPLE-MOCK-TS',
+  icon: '',
+  label: 'Example Mock Plugin (TS)',
+  description: '',
+  configurationInfo: { default: { data: { myNumber: 1 } } },
+  uxInfo: {},
+};
+
+export class MockPlugin implements PluginInfo<MockPluginConfiguration>, Plugin<MockPluginConfiguration> {
   async start(): Promise<void> {
     // throw new Error('Method not implemented.');
   }
@@ -16,14 +28,16 @@ export class MockPlugin implements PluginInfo, Plugin {
   async systemReady(): Promise<void> {
     // throw new Error('Method not implemented.');
   }
-  type = PluginType.GeneralPlugin;
-  uuid = MockPluginUUID;
-  id = 'EXAMPLE-MOCK-TS';
-  icon = '';
-  label = 'Example Mock Plugin (TS)';
-  description = '';
-  configurationInfo = { default: { data: { myNumber: 1 } } };
-  uxInfo = {};
+
+  // Static metadata from info POJO
+  readonly type = MockPluginInfo.type;
+  readonly uuid = MockPluginInfo.uuid;
+  readonly id = MockPluginInfo.id;
+  readonly icon = MockPluginInfo.icon;
+  readonly label = MockPluginInfo.label;
+  readonly description = MockPluginInfo.description;
+  readonly configurationInfo = MockPluginInfo.configurationInfo;
+  readonly uxInfo = MockPluginInfo.uxInfo;
 
   private _context?: any;
   get context(): any {
